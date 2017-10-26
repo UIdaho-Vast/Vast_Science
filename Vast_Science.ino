@@ -1,39 +1,61 @@
+/*
+Written By: Seth Berryhill
+October 2017
+
+Arduino Uno
+http://www.ladyada.net/make/gpsshield
+  -----------------------------------------------------*/
+
 #include <SD.h>
 #include <SPI.h>
 
-#define lightpin 0
-#define pressurepin 3
-#define chipSelect 10
+#define greenled 5
+#define redled 6
+#define pressurepin 7
+#define temppin 8
+#define voltagepin 9
+#define sd 10
+#define humiditypin 11
+#define magnetpin 12
 
-int geiger = 0;
 char filename[]="data.csv";
 
 void setup() {
   Serial.begin(9600);
-  pinMode( chipSelect, OUTPUT );
-  if (!SD.begin(chipSelect)) {
+  while (!Serial) {
+    ;
+  }
+
+  pinMode( sd, OUTPUT );
+  if (!SD.begin(sd)) {
     Serial.println("Card init. failed!");
   }
 }
-void loop() {
-  delay(1000);
-  File dataFile = SD.open(filename,FILE_WRITE);
-  uint32_t m=millis();
-  int light = analogRead(lightpin);
-  int pressure = analogRead(pressurepin);
- // if ( Serial.available() > 0 )
-  //{
-    geiger = Serial.read();
-  //}
-  
-  dataFile.print(m);
-  dataFile.print(",");
-  dataFile.print(light);
-  dataFile.print(",");
-  dataFile.print(geiger);
-  dataFile.print(",");
-  dataFile.println(pressure);
-  dataFile.close();
-  Serial.println(geiger);
-}
 
+void loop() {
+  delay(2800);
+  File dataFile  = SD.open(filename,FILE_WRITE);
+  uint32_t t   = millis();
+  int pressure  = analogRead(pressurepin);
+  int temp      = analogRead(temppin);
+  int volt        = analogRead(voltagepin);
+  int humidity = analogRead(humiditypin);
+  int magnet   = analogRead(magnetpin);
+
+  digitalWrite(redled, HIGH);
+  dataFile.print(t);
+  dataFile.print(",");
+  dataFile.print(pressure);
+  dataFile.print(",");
+  dataFile.print(temp);
+  dataFile.print(",");
+  dataFile.print(volt);
+  dataFile.print(",");
+  dataFile.print(humidity);
+  dataFile.print(",");
+  dataFile.println(magnet);
+  dataFile.close();
+  Serial.println(t);
+  delay(200);
+  digitalWrite(redled,LOW);
+}
