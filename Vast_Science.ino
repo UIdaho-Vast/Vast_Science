@@ -11,12 +11,12 @@ http://www.ladyada.net/make/gpsshield
 
 #define greenled 5
 #define redled 6
-#define pressurepin 7
-#define temppin 8
-#define voltagepin 9
+#define pressurepin 1
+#define temppin 2
+#define voltagepin 3
 #define sd 10
-#define humiditypin 11
-#define magnetpin 12
+#define humiditypin 4
+#define magnetpin 5
 
 char filename[]="data.csv";
 
@@ -55,7 +55,8 @@ void loop() {
   dataFile.print(",");
   dataFile.println(magnet);
   dataFile.close();
-  Serial.println(t);
+  Serial.println(humidity);
+  Serial.println(magnet);
   delay(200);
   digitalWrite(redled,LOW);
 }
