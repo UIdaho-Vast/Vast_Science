@@ -23,4 +23,7 @@
 
 # TODO
 
-* Check every sensor individually
+* Write in the Sleep Function
+* Test each sensor
+* Do we have a power supply to use?
+* Talk about solar panel circuit

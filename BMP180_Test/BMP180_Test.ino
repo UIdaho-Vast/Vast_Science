@@ -1,14 +1,14 @@
 
-\\ Import Libraries
+// Import Libraries
 #include <Wire.h> // For I2C connection
 #include <Adafruit_Sensor.h> // Unified Adafruit Sensor reader
 #include <Adafruit_BMP085_U.h> // Specifies what sensor we are using
 
 
-\\ no idea what this does
+// no idea what this does
 Adafruit_BMP085_Unified bmp = Adafruit_BMP085_Unified(10085);
 
-void setup(){
+void setup() {
 
   Serial.begin(9600);
   while(!Serial){;}
@@ -21,8 +21,8 @@ void setup(){
     while(1);
   }
 
-  Serial.print("Output of bmp.begin: ");
-  Serial.print(bmp.begin);
+//  Serial.print("Output of bmp.begin: ");
+//  Serial.print(bmp.begin);
 }
 
 void loop(){
@@ -44,4 +44,6 @@ void loop(){
     Serial.print("Temperature: ");
     Serial.print(temperature);
     Serial.println(" C");
+    delay(1000);
+  }
 }
