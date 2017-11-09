@@ -1,11 +1,10 @@
-
 // Import Libraries
 #include <Wire.h> // For I2C connection
 #include <Adafruit_Sensor.h> // Unified Adafruit Sensor reader
 #include <Adafruit_BMP085_U.h> // Specifies what sensor we are using
 
 
-// no idea what this does
+// creates object of type Adafrut... and named bmp
 Adafruit_BMP085_Unified bmp = Adafruit_BMP085_Unified(10085);
 
 void setup() {
